@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CryptoLab is a browser-based encoding and classical cryptography toolkit.">
+  <meta name="theme-color" content="#080d0b">
+  <title>CryptoLab — Cryptography Toolkit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-view="dashboard" aria-label="CryptoLab home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>crypto<span class="brand-accent">lab</span><small>SECURITY TOOLKIT</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span> Dashboard</button>
+        <button class="nav-item" data-view="tools"><span class="nav-icon">⌘</span> All tools <span class="nav-count">9</span></button>
+        <button class="nav-item" data-view="learn"><span class="nav-icon">▤</span> Learn cryptography</button>
+      </nav>
+      <div class="side-label recent-label">RECENT TOOLS</div>
+      <div id="recentTools" class="recent-tools"><p class="muted tiny">Your recently opened tools appear here.</p></div>
+      <div class="sidebar-bottom">
+        <div class="status-line"><span class="status-dot"></span> All systems operational</div>
+        <p>CLIENT-SIDE PROCESSING<br><span>Your data stays in this browser.</span></p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>WORKSPACE</span><b>/</b><strong id="crumbCurrent">Dashboard</strong></div>
+        <div class="topbar-right"><span class="local-badge"><i></i> LOCAL MODE</span><span class="avatar">CL</span></div>
+      </header>
+
+      <section id="dashboardView" class="view active">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> YOUR PERSONAL CRYPTOGRAPHY LABORATORY</div>
+            <h1>Welcome to <span>CryptoLab</span></h1>
+            <p class="hero-subtitle">Welcome to CryptoLab – Your Personal Cryptography Laboratory.</p>
+            <p class="hero-description">A practical workspace for encoding, classical ciphers and cryptographic hashing. Explore how data is transformed, one tool at a time.</p>
+            <button class="button button-primary" data-view="tools">Explore all tools <span>↗</span></button>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="core-lock"><span class="lock-shackle"></span><span class="lock-body">⌑</span></div>
+            <span class="float-code code-a">01001011</span><span class="float-code code-b">0x4C 0x41</span>
+            <span class="float-code code-c">SHA-256</span><span class="float-code code-d">{ secure }</span>
+            <div class="visual-caption"><span class="status-dot"></span> ENCRYPTION PLAYGROUND</div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><div class="eyebrow">TOOLBOX</div><h2>Explore your tools</h2><p>Choose a utility to get started.</p></div>
+          <label class="search-box"><span>⌕</span><input id="toolSearch" type="search" placeholder="Search tools..." aria-label="Search tools"><kbd>/</kbd></label>
+        </div>
+        <div class="tool-grid" id="dashboardTools"></div>
+        <div class="bottom-grid">
+          <article class="info-panel learn-promo">
+            <div class="panel-icon">⌁</div><div><div class="eyebrow">KNOWLEDGE BASE</div><h3>Understand the science behind the tools</h3><p>Learn the difference between encoding, encryption and hashing — and where each belongs.</p><button class="text-button" data-view="learn">Explore learning center <span>→</span></button></div>
+          </article>
+          <article class="info-panel privacy-panel"><div class="privacy-symbol">◈</div><div><div class="eyebrow">PRIVACY FIRST</div><h3>Processed locally</h3><p>CryptoLab does not upload, store or transmit the text you enter. All tools run in your browser.</p><span class="privacy-tag"><i></i> NO BACKEND REQUIRED</span></div></article>
+        </div>
+      </section>
+
+      <section id="toolsView" class="view">
+        <div class="page-heading"><div class="eyebrow">YOUR TOOLBOX</div><h1>All tools</h1><p>Encoding, classical cryptography and hashing utilities in one place.</p></div>
+        <div class="tool-grid" id="allTools"></div>
+      </section>
+
+      <section id="toolView" class="view">
+        <button class="back-link" data-view="dashboard">← Back to dashboard</button>
+        <div class="tool-workspace">
+          <div class="tool-title-row"><div><div class="eyebrow" id="toolCategory">ENCODING</div><h1 id="toolTitle">Base64 Encoder / Decoder</h1><p id="toolDescription"></p></div><span class="tool-chip" id="toolChip">TEXT TRANSFORM</span></div>
+          <div class="tool-layout">
+            <div class="editor-panel">
+              <div class="editor-heading"><label for="toolInput">INPUT</label><span id="inputCount">0 characters</span></div>
+              <textarea id="toolInput" spellcheck="false" placeholder="Enter or paste your text here..."></textarea>
+              <div class="editor-footer"><span class="hint" id="inputHint">Enter the text you want to transform.</span><button class="subtle-button" id="clearButton">Clear input ×</button></div>
+              <div id="extraControls" class="extra-controls"></div>
+              <div class="action-row" id="actionRow"></div>
+            </div>
+            <div class="editor-panel output-panel">
+              <div class="editor-heading"><label for="toolOutput">OUTPUT</label><span id="outputCount">0 characters</span></div>
+              <textarea id="toolOutput" spellcheck="false" placeholder="Your result will appear here..." readonly></textarea>
+              <div class="editor-footer"><span class="hint" id="outputHint">Result is generated locally.</span><button class="subtle-button" id="copyButton">Copy output ⧉</button></div>
+              <div id="toolMessage" class="tool-message" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+          <article class="algorithm-card"><div class="algorithm-icon">ⓘ</div><div><h3>How it works</h3><p id="algorithmText"></p></div></article>
+        </div>
+      </section>
+
+      <section id="learnView" class="view">
+        <div class="page-heading"><div class="eyebrow">KNOWLEDGE BASE</div><h1>Learn cryptography</h1><p>Build a solid mental model of the techniques inside CryptoLab.</p></div>
+        <div class="learn-grid">
+          <article class="learn-card featured-learn"><span class="learn-number">01 / FOUNDATIONS</span><h2>Encoding vs Encryption vs Hashing</h2><p>These three operations can all transform data into a different-looking representation, but they solve different problems.</p><div class="concept-list">
+            <div><b>Encoding</b><span>Changes representation so data can be stored or transported. It is reversible and uses no secret key. Example: Base64.</span></div>
+            <div><b>Encryption</b><span>Protects confidentiality by transforming plaintext with a key. Decryption requires the appropriate key. Example: AES.</span></div>
+            <div><b>Hashing</b><span>Creates a fixed-length digest intended to be one-way. It is useful for integrity checks and other security designs. Example: SHA-256.</span></div>
+          </div></article>
+          <article class="learn-card"><span class="learn-number">02 / CLASSICAL CRYPTOGRAPHY</span><h2>Classical vs modern cryptography</h2><p>Classical ciphers generally manipulate letters using simple substitutions or rearrangements. They are useful for learning core ideas, but their small key spaces and recognizable patterns make them insecure.</p><p>Modern cryptography uses rigorously analyzed algorithms, larger key spaces and carefully designed protocols. Real systems also depend on secure key management, implementation and randomness.</p></article>
+          <article class="learn-card"><span class="learn-number">03 / ENCODING</span><h2>Why Base64 is not encryption</h2><p>Base64 maps bytes to a limited set of printable characters. Anyone can decode it without a password or secret key. It is an encoding format, not a security boundary.</p></article>
+          <article class="learn-card"><span class="learn-number">04 / SUBSTITUTION CIPHERS</span><h2>Caesar and Vigenère ciphers</h2><p><b>Caesar:</b> shifts each letter by a fixed number of positions in the alphabet. A shift of 3 maps A to D. There are only 25 non-zero shifts, so brute force is trivial.</p><p><b>Vigenère:</b> uses a repeating keyword to determine a different shift for each letter. It is more complex than Caesar, but repeating-key patterns and statistical analysis make it unsuitable for real security.</p></article>
+          <article class="learn-card"><span class="learn-number">05 / HASHING</span><h2>What SHA-256 does</h2><p>SHA-256 is a member of the SHA-2 hash family. It accepts input of arbitrary length and produces a 256-bit (32-byte) digest, commonly shown as 64 hexadecimal characters. A hash is not decrypted; changing the input changes the digest. SHA-256 alone is not a password-storage scheme — use a password-hashing function such as Argon2id, scrypt or PBKDF2 with salts for that purpose.</p></article>
+          <article class="learn-card warning-learn"><span class="learn-number">06 / USE RESPONSIBLY</span><h2>Security disclaimer</h2><p>CryptoLab is an educational toolkit. Caesar, ROT13, Vigenère and simple encodings do not provide meaningful protection. Do not use these tools to protect passwords, personal information, financial data or confidential communications. For real applications, use vetted, modern cryptographic libraries and protocols.</p></article>
+        </div>
+      </section>
+      <footer class="footer"><span>CRYPTOLAB <b>·</b> BUILT FOR LEARNING</span><span>Educational use only. Classical ciphers are not secure for sensitive information.</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
