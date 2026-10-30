@@ -60,7 +60,3 @@ cryptolab/
 ├── script.js
 └── README.md
 ```
-
-## License
-
-Choose and add a license before distributing or accepting external contributions.
